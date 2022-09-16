@@ -7,6 +7,10 @@ beforeEach(async () => {
   await prisma.$executeRaw`TRUNCATE TABLE items`
 })
 
+afterAll(async () => {
+  await prisma.$disconnect()
+})
+
 describe('Testa POST /items ', () => {
   it('Deve retornar 201, se cadastrado um item no formato correto', async () => {
     const body = getNewRandomItem();
